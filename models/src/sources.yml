@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: mrr_playbook
+    schema: raw
+    tables:
+      - name: customers
+        identifier: raw_customers
+
+      - name: subscription_types
+        identifier: raw_subscription_type
+
+      - name: payments
+        identifier: raw_payments

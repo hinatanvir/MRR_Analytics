@@ -1,20 +1,25 @@
 name: acme
 profile: playbook
-version: '1.0'
+version: "1.0"
 config-version: 2
 
 require-dbt-version: ">=0.19.0"
 
-source-paths: ["models"]
+model-paths: ["models"] # HT: Changed from source_paths
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
-data-paths: ["data"]
+seed-paths: ["data"] #HT: Changed from data-paths
+snapshot-paths: ["snapshots"]
 macro-paths: ["macros"]
 
 target-path: "target"
 clean-targets:
-    - "target"
-    - "dbt_modules"
+  - "target"
+  - "dbt_modules"
 
 seeds:
   quote_columns: false
+
+models:
+  +post-hook:
+    - "GRANT SELECT ON {{ this }} TO ROLE REPORTER"

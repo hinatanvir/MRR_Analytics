@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: Metabase
+    type: dashboard
+    maturity: low
+    url: https://dbt-bi.metabaseapp.com/dashboard/8-acme-monthly-recurring-revenue
+    description: >
+      Executive Dashboard on MRR using Metabase
+
+    depends_on:
+      - ref('mrr')
+
+    owner:
+      name: Hina Tanvir
+      email: tanvir.hina7@gmail.com

@@ -1,0 +1,4 @@
+subscription_type_id,subscription_type_name,subscription_benefits,price_per_month
+1,Basic,"Access to content library, Standard support",9.99
+2,Standard,"Access to content library, High-quality streaming, Standard support",14.99
+3,Premium,"Access to content library, High-quality streaming, Premium support, Multiple devices",19.99
