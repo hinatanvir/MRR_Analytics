@@ -1,7 +1,7 @@
 version: 2
 
 exposures:
-  - name: Metabase
+  - name: Metabase MRR
     type: dashboard
     maturity: low
     url: https://dbt-bi.metabaseapp.com/dashboard/8-acme-monthly-recurring-revenue
@@ -10,6 +10,20 @@ exposures:
 
     depends_on:
       - ref('mrr')
+
+    owner:
+      name: Hina Tanvir
+      email: tanvir.hina7@gmail.com
+
+  - name: Metabase payments and customers
+    type: dashboard
+    maturity: low
+    url: https://dbt-bi.metabaseapp.com/dashboard/34-a-look-at-mart-customer-payment-analysis?COUNT_SUCCESSFUL_TRANSACTIONS=&CUSTOMER_SEGMENT=&COUNT_FAILED_TRANSACTIONS=&REVENUE_MONTH=
+    description: >
+      Executive Dashboard on customer payments nad segments  using Metabase
+
+    depends_on:
+      - ref('mart_customer_payment_analysis')
 
     owner:
       name: Hina Tanvir

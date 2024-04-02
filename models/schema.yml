@@ -3,25 +3,27 @@ version: 2
 models:
   - name: subscription_periods
     tests:
-      # test that a customer can only have one active subscription at a time
       - dbt_utils.mutually_exclusive_ranges:
           lower_bound_column: start_date
           upper_bound_column: end_date
           partition_by: customer_id
-      # test that the start date of a subscription is the first of the month
       - dbt_utils.expression_is_true:
-          expression: date_trunc('month', start_date) = start_date
-      # test that the end date of a subscription is the first of the month
+          expression: "date_trunc('month', start_date) = start_date"
       - dbt_utils.expression_is_true:
-          expression: date_trunc('month', end_date) = end_date
-
+          expression: "date_trunc('month', end_date) = end_date"
 
   - name: customer_revenue_by_month
     tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - customer_id
-            - date_month
+          combination_of_columns: ["customer_id", "date_month"]
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+      - name: date_month
+        tests:
+          - not_null
 
   - name: customer_churn_month
     columns:
@@ -29,3 +31,40 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: fct_payments
+    description: "This table contains all payment transactions."
+    columns:
+      - name: customer_id
+        description: "The ID of the customer making the payment."
+        tests:
+          - not_null
+      - name: transaction_amount
+        description: "The amount of the transaction."
+        tests:
+          - not_null
+          - dbt_utils.greater_than_zero:
+              column_name: transaction_amount
+              compare_value: 0
+
+  - name: dim_customer_segments
+    description: "This table contains customer segments."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+          - unique
+
+snapshots:
+  - name: scd_customer_subscriptions
+    description: "A snapshot of customer subscriptions over time."
+    tests:
+      - relationships:
+          to: ref('subscription_periods')
+          field: subscription_id
+    columns:
+      - name: subscription_id
+        tests:
+          - not_null
+          - unique
