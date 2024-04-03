@@ -38,6 +38,26 @@ MRR-PLAYBOOK/
 │
 └── schema.yml # Schema definitions and test configurations
 
+MRR-PLAYBOOK/
+├── models/ # Transformation models
+│ ├── core/ # Business logic calculations
+│ │ ├── customer_revenue_by_month.sql
+│ │ ├── customer_churn_month.sql
+│ │ └── mrr.sql
+│ └── dim/ # Dimension tables
+│ └── dim_customer_segments.sql
+├── fct/ # Fact tables
+│ └── fct_payments.sql
+├── mart/ # Data mart for aggregated analysis
+│ └── mart_customer_payment_analysis.sql
+├── snapshots/ # Historical data tracking
+│ └── scd_customer_subscriptions.sql
+├── tests/ # Data validation tests
+│ └── duplicates.sql
+├── analysis/ # Ad-hoc analytical queries
+│ └── adhoc_customer_payment_insights.sql
+└── schema.yml # Schema definitions and test configurations
+
 The project's directory structure organizes the data models and tests as follows:
 
 - `/models`
@@ -93,3 +113,11 @@ This project paves the way for further development, including:
 - Predictive modeling for forecasting future trends.
 - Customer behavior analysis for enhanced targeting and retention strategies.
 - Expansion of the data mart for deeper multi-dimensional analysis.
+
+## Optimisations
+
+- Updating materializations in the DWH according to data usage requirements
+- Add sophisticated test to continuously ensure data quality and add modularization through using reusable macros throughout the project
+- Adjusting dbt configuration parameters to increase scalability and performance.
+- Upgrade the project environment to staging and production after development and testing
+- Productionize the project as well as dbt documentation using docker containers
