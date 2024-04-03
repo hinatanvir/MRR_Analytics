@@ -11,6 +11,7 @@ test-paths: ["tests"]
 seed-paths: ["data"] #HT: Changed from data-paths
 snapshot-paths: ["snapshots"]
 macro-paths: ["macros"]
+assets-paths: ["assets"]
 
 target-path: "target"
 clean-targets:

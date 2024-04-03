@@ -10,54 +10,6 @@ Welcome to the Subscription Revenue Analysis project. This project streamlines t
 
 ## Dbt Project Structure
 
-MRR-PLAYBOOK/
-│
-├── models/ # Transformation models
-│ ├── core/ # Business logic calculations
-│ │ ├── customer_revenue_by_month.sql
-│ │ ├── customer_churn_month.sql
-│ │ └── mrr.sql
-│ │
-│ ├── dim/ # Dimension tables
-│ │ └── dim_customer_segments.sql
-│ │
-│ ├── fct/ # Fact tables
-│ │ └── fct_payments.sql
-│ │
-│ └── mart/ # Data mart for aggregated analysis
-│ └── mart_customer_payment_analysis.sql
-│
-├── snapshots/ # Historical data tracking
-│ └── scd_customer_subscriptions.sql
-│
-├── tests/ # Data validation tests
-│ └── duplicates.sql
-│
-├── analysis/ # Ad-hoc analytical queries
-│ └── adhoc_customer_payment_insights.sql
-│
-└── schema.yml # Schema definitions and test configurations
-
-MRR-PLAYBOOK/
-├── models/ # Transformation models
-│ ├── core/ # Business logic calculations
-│ │ ├── customer_revenue_by_month.sql
-│ │ ├── customer_churn_month.sql
-│ │ └── mrr.sql
-│ └── dim/ # Dimension tables
-│ └── dim_customer_segments.sql
-├── fct/ # Fact tables
-│ └── fct_payments.sql
-├── mart/ # Data mart for aggregated analysis
-│ └── mart_customer_payment_analysis.sql
-├── snapshots/ # Historical data tracking
-│ └── scd_customer_subscriptions.sql
-├── tests/ # Data validation tests
-│ └── duplicates.sql
-├── analysis/ # Ad-hoc analytical queries
-│ └── adhoc_customer_payment_insights.sql
-└── schema.yml # Schema definitions and test configurations
-
 The project's directory structure organizes the data models and tests as follows:
 
 - `/models`
@@ -82,6 +34,8 @@ The data workflow moves from ingestion to visualization:
 1. **Data Ingestion**: CSVs are processed and loaded into Snowflake.
 2. **Transformation**: Using dbt, raw data is transformed into analytical models.
 3. **Visualization**: Metabase dashboards are used to visualize and derive insights.
+
+![workflow](/assets/workflow.png "Project Workflow")
 
 ## Data Lineage
 
